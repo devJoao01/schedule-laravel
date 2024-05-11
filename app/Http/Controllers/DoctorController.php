@@ -4,27 +4,49 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
-use App\Http\Resources\StoreDoctorController;
+
+use App\Services\DoctorServiceInterface;
+use App\Http\Resources\DoctorResource;
+use App\Services\DoctorService;
+use Illuminate\Http\Response;
 
 class DoctorController extends Controller
-
-// ----------------------------------------------------------------------INDEX----------------------------------------------------------------------
-
 {
+    protected $doctorService;
+    public function __construct(DoctorServiceInterface $doctorService)
+    {
+        $this->doctorService = $doctorService;
+    }
+    // ----------------------------------------------------------------------INDEX----------------------------------------------------------------------
+
+
     public function index()
     {
-        $doctors = Doctor::all();
-        return StoreDoctorController::collection($doctors);
+        try {
+            $doctor = $this->doctorService->all();
+            return DoctorResource::collection($doctor);
+        } catch (\Exception $e) {
+            return response()->json([
+                "error" => "Error retrieving doctors",
+                "message" => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
     }
     // ----------------------------------------------------------------------STORE----------------------------------------------------------------------
 
-    public function store(StoreDoctorController $request)
+    public function store(DoctorResource $request)
     {
-        $doctor = Doctor::create($request->all());
-        return response()->json([
-            "message" => "ADDED DOCTOR",
-            "doctor" => $doctor,
-        ], 201);
+        $data = $request->validated();
+
+        try {
+            $doctor = $this->doctorService->create($data);
+            return new DoctorResource($doctor);
+        } catch (\Exception $e) {
+            return response()->json([
+                "error" => "Error adding doctor",
+                "message" => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
     }
 
     // ----------------------------------------------------------------------SHOW----------------------------------------------------------------------
@@ -32,33 +54,34 @@ class DoctorController extends Controller
     public function show($id)
     {
         try {
-            $doctor = Doctor::findOrFail($id);
-            return response()->json($doctor);
+            $doctor = $this->doctorService->find($id);
+            return response()->json($doctor, Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Doctor not found',
-                'message' => $e->getMessage(),
-            ], 404);
+                "message" => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
         }
     }
 
     // ----------------------------------------------------------------------UPDATE----------------------------------------------------------------------
 
-    public function update(StoreDoctorController $request, $id)
+    public function update(DoctorResource $request, $id)
     {
+        $data = $request->validated();
+
         try {
-            $doctor = Doctor::findOrFail($id);
-            $doctor->update($request->all());
+            $doctor = $this->doctorService->update($id, $data);
 
             return response()->json([
                 'message' => 'Doctor updated sucessfuly',
                 'doctor' =>  $doctor,
-            ]);
+            ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'error in update a doctor',
                 'message' => $e->getMessage()
-            ], 404);
+            ], response::HTTP_BAD_REQUEST);
         };
     }
 
@@ -66,17 +89,15 @@ class DoctorController extends Controller
     public function destroy($id)
     {
         try {
-            $doctor = Doctor::findOrFail($id);
-            $doctor->delete();
-
+            $this->doctorService->delete($id);
             return response()->json([
                 "message" => "Doctor removed successfully",
-            ]);
+            ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
                 "error" => "Error deleting doctor",
                 "message" => $e->getMessage()
-            ], 404);
+            ], Response::HTTP_BAD_REQUEST);
         }
     }
 }
