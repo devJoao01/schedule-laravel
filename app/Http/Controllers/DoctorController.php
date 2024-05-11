@@ -1,9 +1,11 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Doctor;
+use App\Http\Resources\StoreDoctorController;
 
 class DoctorController extends Controller
 
@@ -12,20 +14,13 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        $doctor = Doctor::all();
-        return response()->json($doctor);
+        $doctors = Doctor::all();
+        return StoreDoctorController::collection($doctors);
     }
     // ----------------------------------------------------------------------STORE----------------------------------------------------------------------
 
-    public function store(Request $request)
+    public function store(StoreDoctorController $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'specialty' => 'required|string|max:255',
-            'work_schedule' => 'required|string|max:255',
-            'contact' => 'required|string|max:20'
-        ]);
-
         $doctor = Doctor::create($request->all());
         return response()->json([
             "message" => "ADDED DOCTOR",
@@ -50,17 +45,10 @@ class DoctorController extends Controller
 
     // ----------------------------------------------------------------------UPDATE----------------------------------------------------------------------
 
-    public function update(Request $request, $id)
+    public function update(StoreDoctorController $request, $id)
     {
         try {
             $doctor = Doctor::findOrFail($id);
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'specialty' => 'required|string|max:255',
-                'work_schedule' => 'required|string|max:255',
-                'contact' => 'required|string|max:20'
-            ]);
-
             $doctor->update($request->all());
 
             return response()->json([
