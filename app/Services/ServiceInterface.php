@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-interface DoctorServiceInterface
+interface ServiceInterface
 {
     public function create(array $data);
 

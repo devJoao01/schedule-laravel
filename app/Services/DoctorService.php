@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Doctor;
 
-class DoctorService implements DoctorServiceInterface
+class DoctorService implements ServiceInterface
 {
     public function create(array $data)
     {

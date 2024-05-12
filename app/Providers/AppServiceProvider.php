@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Services\DoctorService;
-use App\Services\DoctorServiceInterface;
+use App\Services\ServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(DoctorServiceInterface::class, DoctorService::class);
+        $this->app->bind(ServiceInterface::class, DoctorService::class);
     }
     
     /**
