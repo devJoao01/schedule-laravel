@@ -13,7 +13,7 @@ use Illuminate\Http\Response;
 class DoctorController extends Controller
 {
     protected $doctorService;
-    public function __construct(ServiceInterface $doctorService)
+    public function __construct(DoctorService $doctorService)
     {
         $this->doctorService = $doctorService;
     }

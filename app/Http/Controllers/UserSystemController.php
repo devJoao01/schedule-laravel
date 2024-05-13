@@ -13,7 +13,7 @@ use Illuminate\Http\Response;
 class UserSystemController extends Controller
 {
     protected $UserSystemService;
-    public function __construct(ServiceInterface $UserSystemService)
+    public function __construct(UserSystemService $UserSystemService)
     {
         $this->UserSystemService = $UserSystemService;
     }

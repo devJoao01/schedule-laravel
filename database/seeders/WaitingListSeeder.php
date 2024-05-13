@@ -19,15 +19,15 @@ class WaitingListSeeder extends Seeder
 
         $patientIds = \App\Models\Patient::pluck('id')->toArray();
         $doctorIds = \App\Models\Doctor::pluck('id')->toArray();
-        
-        for ($i = 0; $i < 10; $i++) { 
+
+        for ($i = 0; $i < 10; $i++) {
             WaitingList::create([
                 'patient_id' => $faker->randomElement($patientIds),
                 'doctor_id' => $faker->randomElement($doctorIds),
-                'priority' => $faker->randomElement(['normal', 'urgent']), 
-                'date' => $faker->date($format = 'Y-m-d', $max = 'now'), 
-                'created_at' => now(), 
-                'updated_at' => now() 
+                'priority' => $faker->randomElement(['normal', 'urgent']),
+                'date' => $faker->date($format = 'Y-m-d', $max = 'now'),
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
         }
     }

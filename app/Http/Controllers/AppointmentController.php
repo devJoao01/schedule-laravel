@@ -13,7 +13,7 @@ use Illuminate\Http\Response;
 class AppointmentController extends Controller
 {
     protected $AppointmentService;
-    public function __construct(ServiceInterface $AppointmentService)
+    public function __construct(AppointmentService $AppointmentService)
     {
         $this->AppointmentService = $AppointmentService;
     }

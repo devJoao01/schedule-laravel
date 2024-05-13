@@ -13,7 +13,7 @@ use Illuminate\Http\Response;
 class WaitingListController extends Controller
 {
     protected $WaitingListService;
-    public function __construct(ServiceInterface $WaitingListService)
+    public function __construct(WaitingListService $WaitingListService)
     {
         $this->WaitingListService = $WaitingListService;
     }
