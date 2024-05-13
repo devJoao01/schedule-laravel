@@ -17,12 +17,15 @@ class AppointmentSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 10; $i++) { 
+        $patientIds = \App\Models\Patient::pluck('id')->toArray();
+        $scheduleIds = \App\Models\Schedule::pluck('id')->toArray();
+       
+        for ($i = 0; $i < 10; $i++) {
             Appointment::create([
-                'patient_id' => $faker->numberBetween(1, 100), 
-                'schedule_id' => $faker->numberBetween(1, 50), 
-                'created_at' => $faker->dateTimeThisMonth(), 
-                'updated_at' => $faker->dateTimeThisMonth() 
+                'patient_id' => $faker->randomElement($patientIds),
+                'schedule_id' => $faker->randomElement($scheduleIds),
+                'created_at' => $faker->dateTimeThisMonth(),
+                'updated_at' => $faker->dateTimeThisMonth()
             ]);
         }
     }
