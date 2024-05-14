@@ -17,8 +17,6 @@ class AppointmentController extends Controller
     {
         $this->AppointmentService = $AppointmentService;
     }
-    // ----------------------------------------------------------------------INDEX----------------------------------------------------------------------
-
 
     public function index()
     {
@@ -32,7 +30,6 @@ class AppointmentController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
     }
-    // ----------------------------------------------------------------------STORE----------------------------------------------------------------------
 
     public function store(AppointmentResource $request)
     {
@@ -49,7 +46,6 @@ class AppointmentController extends Controller
         }
     }
 
-    // ----------------------------------------------------------------------SHOW----------------------------------------------------------------------
 
     public function show($id)
     {
@@ -64,7 +60,6 @@ class AppointmentController extends Controller
         }
     }
 
-    // ----------------------------------------------------------------------UPDATE----------------------------------------------------------------------
 
     public function update(AppointmentResource $request, $id)
     {
@@ -85,7 +80,6 @@ class AppointmentController extends Controller
         };
     }
 
-    // ----------------------------------------------------------------------DESTROY----------------------------------------------------------------------
     public function destroy($id)
     {
         try {

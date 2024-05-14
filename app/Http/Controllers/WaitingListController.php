@@ -17,7 +17,6 @@ class WaitingListController extends Controller
     {
         $this->WaitingListService = $WaitingListService;
     }
-    // ----------------------------------------------------------------------INDEX----------------------------------------------------------------------
 
 
     public function index()

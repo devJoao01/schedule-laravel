@@ -17,8 +17,6 @@ class DoctorController extends Controller
     {
         $this->doctorService = $doctorService;
     }
-    // ----------------------------------------------------------------------INDEX----------------------------------------------------------------------
-
 
     public function index()
     {
@@ -32,7 +30,6 @@ class DoctorController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
     }
-    // ----------------------------------------------------------------------STORE----------------------------------------------------------------------
 
     public function store(DoctorResource $request)
     {
@@ -49,7 +46,6 @@ class DoctorController extends Controller
         }
     }
 
-    // ----------------------------------------------------------------------SHOW----------------------------------------------------------------------
 
     public function show($id)
     {
@@ -64,7 +60,6 @@ class DoctorController extends Controller
         }
     }
 
-    // ----------------------------------------------------------------------UPDATE----------------------------------------------------------------------
 
     public function update(DoctorResource $request, $id)
     {
@@ -85,7 +80,6 @@ class DoctorController extends Controller
         };
     }
 
-    // ----------------------------------------------------------------------DESTROY----------------------------------------------------------------------
     public function destroy($id)
     {
         try {

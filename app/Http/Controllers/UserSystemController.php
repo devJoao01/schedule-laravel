@@ -17,8 +17,6 @@ class UserSystemController extends Controller
     {
         $this->UserSystemService = $UserSystemService;
     }
-    // ----------------------------------------------------------------------INDEX----------------------------------------------------------------------
-
 
     public function index()
     {
@@ -32,7 +30,6 @@ class UserSystemController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
     }
-    // ----------------------------------------------------------------------STORE----------------------------------------------------------------------
 
     public function store(UserSystemResource $request)
     {
@@ -49,7 +46,6 @@ class UserSystemController extends Controller
         }
     }
 
-    // ----------------------------------------------------------------------SHOW----------------------------------------------------------------------
 
     public function show($id)
     {
@@ -63,8 +59,6 @@ class UserSystemController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
     }
-
-    // ----------------------------------------------------------------------UPDATE----------------------------------------------------------------------
 
     public function update(UserSystemResource $request, $id)
     {
@@ -85,7 +79,6 @@ class UserSystemController extends Controller
         };
     }
 
-    // ----------------------------------------------------------------------DESTROY----------------------------------------------------------------------
     public function destroy($id)
     {
         try {
