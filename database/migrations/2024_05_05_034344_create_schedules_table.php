@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schedules', function (Blueprint $table) {
-            $table->id();
-            $table->date('date');
-            $table->time('time');
-            $table->boolean('status')->default(0);
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('schedules')) {
+            Schema::create('schedules', function (Blueprint $table) {
+                $table->id();
+                $table->date('date');
+                $table->time('time');
+                $table->boolean('status')->default(0);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('appointments', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('patient_id')->constrained('patients');
-            $table->foreignId('schedule_id')->constrained('schedules');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('appointments')) {
+            Schema::create('appointments', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('patient_id')->constrained('patients');
+                $table->foreignId('schedule_id')->constrained('schedules');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

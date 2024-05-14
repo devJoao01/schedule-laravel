@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users_system', function (Blueprint $table) {
-            $table->id();
-            $table->string('user_name');
-            $table->string('password');
-            $table->string('user_level');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('users_system')) {
+            Schema::create('users_system', function (Blueprint $table) {
+                $table->id();
+                $table->string('user_name');
+                $table->string('password');
+                $table->string('user_level');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

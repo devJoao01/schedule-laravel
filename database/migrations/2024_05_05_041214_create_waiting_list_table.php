@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('waiting_list', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('patient_id')->constrained('patients');
-            $table->foreignId('doctor_id')->constrained('doctors');
-            $table->string('priotity');
-            $table->date('date');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('waiting_list')) {
+            Schema::create('waiting_list', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('patient_id')->constrained('patients');
+                $table->foreignId('doctor_id')->constrained('doctors');
+                $table->string('priotity');
+                $table->date('date');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

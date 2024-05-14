@@ -26,4 +26,4 @@ Route::resource('/doctors', DoctorController::class);
 Route::resource('/appointment', AppointmentController::class);
 Route::resource('/patient', PatientController::class);
 Route::resource('/waitingList', WaitingListController::class);
-Route::resource('/user', UserSystemController::class);
+Route::resource('/userSystem', UserSystemController::class);
