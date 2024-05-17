@@ -8,6 +8,10 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\WaitingListController;
 use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\UserSystemController;
+use App\Http\Controllers\Auth\Api\LoginController;
+use App\Http\Controllers\Auth\Api\RegisterController;
+use App\Http\Controllers\Auth\Api\LogoutController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,3 +33,8 @@ Route::resource('/patient', PatientController::class);
 Route::resource('/waitingList', WaitingListController::class);
 Route::resource('/schedule', SchedulesController::class);
 Route::resource('/userSystem', UserSystemController::class);
+Route::prefix('auth')->group(function () {
+    Route::post('login', [LoginController::class, 'login']);
+    Route::post('logout', [LogoutController::class, 'logout']);
+    Route::post('register', [RegisterController::class, 'register']);
+});
