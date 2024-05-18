@@ -31,7 +31,6 @@ class WaitingListController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
     }
-    // ----------------------------------------------------------------------STORE----------------------------------------------------------------------
 
     public function store(WaitingListResource $request)
     {
@@ -48,8 +47,6 @@ class WaitingListController extends Controller
         }
     }
 
-    // ----------------------------------------------------------------------SHOW----------------------------------------------------------------------
-
     public function show($id)
     {
         try {
@@ -62,8 +59,6 @@ class WaitingListController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
     }
-
-    // ----------------------------------------------------------------------UPDATE----------------------------------------------------------------------
 
     public function update(WaitingListResource $request, $id)
     {
@@ -84,7 +79,6 @@ class WaitingListController extends Controller
         };
     }
 
-    // ----------------------------------------------------------------------DESTROY----------------------------------------------------------------------
     public function destroy($id)
     {
         try {
