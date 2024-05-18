@@ -13,16 +13,6 @@ class RegisterController extends Controller
 {
     public function register(RegistrationRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-
         try {
             $user = User::create([
                 'name' => $request->name,
