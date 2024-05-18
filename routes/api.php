@@ -35,6 +35,6 @@ Route::resource('/schedule', SchedulesController::class);
 Route::resource('/userSystem', UserSystemController::class);
 Route::prefix('auth')->group(function () {
     Route::post('login', [LoginController::class, 'login']);
-    Route::post('logout', [LogoutController::class, 'logout']);
+    Route::post('logout', [LogoutController::class, 'logout'])->middleware('auth');
     Route::post('register', [RegisterController::class, 'register']);
 });
