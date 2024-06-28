@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\StatefulGuard;
+
 class LogoutController extends Controller
 {
     protected $guard;
